@@ -1,3 +1,5 @@
+import java.lang.Exception
+
 const val camel = """Switching on the camera in the camel habitat...
  ___.-''''-.
 /___  @    |
@@ -123,10 +125,25 @@ fun main() {
         println("Please enter the number of the habitat you would like to view: ")
         val user_input = readln()
         try {
-            user_input.toInt()
-        } catch (e: NumberFormatException) {
-            println("Wrong input, we are taking only numbers from 1 to 6!")
-            continue
+            if (user_input == "exit") {
+                done = true
+                println("See you later!")
+            } else if (user_input.toInt() in 7..1) {
+                println("Right now we have only 6 animals!\n" +
+                        "Please select number from 1 to 6")
+            } else if (user_input.toInt() < (animals.size)) {
+                println(animals[user_input.toInt()])
+            } else {
+                println("Wrong input, we are taking only numbers from 1 to 6!")
+                //done = true
+            } } catch (e: Exception) { // Kotlin cannot handle 2 errors at the same time
+                when(e) {
+                    is NumberFormatException, is ArrayIndexOutOfBoundsException -> {
+                        println("Wrong input, we are taking only numbers from 1 to 6!")
+                        continue                }
+                    else -> throw e
+                }
         }
     } while(!done)
 }
+
