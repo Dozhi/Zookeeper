@@ -128,11 +128,11 @@ fun main() {
             if (user_input == "exit") {
                 done = true
                 println("See you later!")
-            } else if (user_input.toInt() in 7..1) {
+            }/* else if (user_input.toInt() in 7..1) {
                 println("Right now we have only 6 animals!\n" +
                         "Please select number from 1 to 6")
-            } else if (user_input.toInt() < (animals.size)) {
-                println(animals[user_input.toInt()])
+            }*/else if (user_input.toInt() < (animals.size+1)) {
+                println(animals[user_input.toInt()-1])
             } else {
                 println("Wrong input, we are taking only numbers from 1 to 6!")
                 //done = true
